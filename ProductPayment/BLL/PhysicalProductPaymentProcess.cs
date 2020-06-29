@@ -1,16 +1,12 @@
 ﻿using ProductPayment.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductPayment.BLL
 {
     public class PhysicalProductPaymentProcess : IProcessPayment
     {
-        private Payment payment;
-        private readonly GeneratePackageSlip _generatePackageSlip = new GeneratePackageSlip();
+        
+        private readonly IGeneratePackageSlip _generatePackageSlip = new GeneratePackageSlip();
 
         //public PhysicalProductPaymentProcess(GeneratePackageSlip generatePackageSlip)
         //{
@@ -19,6 +15,7 @@ namespace ProductPayment.BLL
 
         public string PaymentProcess(Order order, double amount)
         {
+            Payment payment;
             try
             {
                 if (order == null || amount <= 0)
@@ -36,13 +33,14 @@ namespace ProductPayment.BLL
                     payment.PaymentAmount = amount;
                     payment.PaymentDate = DateTime.UtcNow;
 
-                    // insert payment details to the database;
-                    ProcessCommission(payment, (int)order.ProductObj.Type); // process AGENT commision.
+                    // repository.AddPayment(payment); insert payment details to the database;
+                    double commission = _generatePackageSlip.ProcessCommission(payment); // process AGENT commision.
+                    Console.WriteLine("The agent commission amount processed  {0}", commission);
+                    
 
                     string packageSlip = _generatePackageSlip.GeneratePackingSlip(order);
                     Console.WriteLine("The package slip : {0} ", packageSlip);
-
-
+                    //if wanted, we can email the address slip
                 }
                 return "success";
             }
@@ -53,19 +51,7 @@ namespace ProductPayment.BLL
             }
         }
 
-        private void ProcessCommission(Payment payment, int productType)
-        {
-            double commissionPercentage =10;
-            double CommisionAmount;
-            // get percentage value for each product type
-            // commissionPercentage = repository.GetPercentage4ProductType(productType);
-            CommisionAmount = (payment.PaymentAmount * commissionPercentage) / 100;
-
-            // save the value for the commission agent payment  repository
-            // agent = new CommissionAgent(id);
-            // agent.addCommision(CommissionAmount);
-
-        }
+        
 
     }
 }

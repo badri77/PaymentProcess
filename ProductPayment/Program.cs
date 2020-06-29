@@ -8,13 +8,14 @@ namespace ProductPayment
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to the Product Payment system...");
+            Console.WriteLine("Welcome to the Product Payment Process System...");
 
             int type;
             string cname, pname;
             double paymentAmount;
             DoProcessPaymentFactory pFactory;
 
+            //get data from the user
             Console.WriteLine("Enter Product selection value ; (1. Delivarable; 2. Book; 3. New Membership; 4. Upgrade Membership; 5. Video training)");
             type = Convert.ToInt32(Console.ReadLine());
             type = type - 1;
@@ -27,12 +28,15 @@ namespace ProductPayment
             if (string.IsNullOrWhiteSpace(cname))
                 pname = "The First Customer";
 
-            Console.WriteLine("Enter Payment Amount : ");
+            Console.WriteLine("Enter Payment Amount (> 100rs. ) : ");
             paymentAmount = Convert.ToDouble(Console.ReadLine());
 
+            // process the payment amount.
             pFactory = new DoProcessPaymentFactory();
             string result =pFactory.DoProcess(type, cname, pname, paymentAmount);
             Console.WriteLine("The result of the process :   {0}", result);
+
+
             Console.ReadKey();
 
         }

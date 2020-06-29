@@ -12,6 +12,7 @@ namespace ProductPayment.Models
         public virtual Product ProductObj { get; set; }
         public virtual Customer CustomerObj { get; set; }
 
+        // instead of constructor, to minimize effort, take complex func to create all objects at once for the sample only
         public void CreateDependencies(int producttype, string customername, string productname)
         {
             ProductType type = (ProductType)Enum.ToObject(typeof(ProductType), producttype);

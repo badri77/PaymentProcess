@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProductPayment.Models;
+﻿using ProductPayment.Models;
+using System;
 
 namespace ProductPayment.BLL
 {
     public class MemberPaymentProcess : IProcessPayment
     {
-        MembershipProcess _membershipProcess = new MembershipProcess();
+        IMembershipProcess _membershipProcess = new MembershipProcess();
         //public MemberPaymentProcess(MembershipProcess membershipProcess)
         //{
         //    _membershipProcess = membershipProcess;
@@ -20,11 +16,17 @@ namespace ProductPayment.BLL
             {
                 // do payment process with amout.
 
-                string result = _membershipProcess.ProcessMembershipRequest(order);
-
-                Console.WriteLine("The Membership process result {0}", result);
-
-                return "success";
+                string result = _membershipProcess.ProcessMembershipRequest(order, amount);
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    Console.WriteLine("The Membership process result {0}", result);
+                    return "success";
+                }
+                else
+                {
+                    return "failed";
+                }
+                
             }
             catch (Exception ex)
             {

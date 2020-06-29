@@ -1,60 +1,80 @@
 ﻿using ProductPayment.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductPayment.BLL
 {
-    public class MembershipProcess
+
+    public interface IMembershipProcess
     {
-
-
-        public string ProcessMembershipRequest(Order order)
+        string ProcessMembershipRequest(Order order, double amount);
+    }
+    public class MembershipProcess : IMembershipProcess
+    {
+        public string ProcessMembershipRequest(Order order, double amount)
         {
-            Customer cust = order.CustomerObj;
-            var result = true; // Repository.CheckMembershipforCustomer(cust);
-            string returnvalue = string.Empty;
-            if (result)
+            try
             {
-                returnvalue = UpgradeMemberShip(cust);
-                if (!string.IsNullOrWhiteSpace(returnvalue))
+                Customer cust = order.CustomerObj;
+                bool result = true; // Repository.CheckMembershipforCustomer(cust);
+                string retValue;
+
+                if (result && order.ProductObj.Type == ProductType.Upgrade)     // membership already exists.
                 {
-                    // processEmail
-                    string emailid = cust.EmailId;
-                    string emailBody = ""; // bring from config or db or resource file for standard text.
-                    // create email object and send an upgradation email.
+                    //process payment amount.
+                    retValue = "success";// repository.UpgradeMembership(cust);
+                    if (!string.IsNullOrWhiteSpace(retValue))
+                    {
+                        // processEmail
+                        string emailid = cust.EmailId;
+                        string emailBody = "Membership Upgraded"; // bring from config or db or resource file for standard text.
+                                                                  // create email object and send an upgradation email.
+
+                        return "The customer membership has been upgraded successfully";
+                    }
                 }
+                else
+                {
+                    return "The customer doesn't exists or invalid details.";
+                }
+
+                if (result && order.ProductObj.Type == ProductType.Membership)     // new membership.
+                {
+                    //process payment amount.
+                    result = false; // Repository.CheckMembershipforCustomer(cust);.
+                    retValue = "success";// repository.CreateMemberShip(cust);
+                    if (!string.IsNullOrWhiteSpace(retValue))
+                    {
+                        // processEmail
+                        string emailid = cust.EmailId;
+                        string emailBody = "New Membership created and activated"; // bring from config or db or resource file for standard text.
+                                                                                   // create email object and send an membership creation and activation email.
+                    }
+                }
+                else
+                {
+                    return "The customer doesn't exists or invalid details.";
+                }
+
+                return "";
             }
-            else
+            catch (Exception ex)
             {
-                returnvalue =  CreateMemberShip(cust);
-                if (!string.IsNullOrWhiteSpace(returnvalue))
-                {
-                    // processEmail
-                    string emailid = cust.EmailId;
-                    string emailBody = ""; // bring from config or db or resource file for standard text.
-                    // create email object and send an membership creation and activation email.
-                }
+                // log the error;
+                return "";
             }
-            return returnvalue;
-
         }
-        private String CreateMemberShip(Customer customer)
-        {
-            var value = true; // repository.AddMemberShip(cust);
-            return "New Membership Added";
+        //private String CreateMemberShip(Customer customer)
+        //{
+        //    var value = true; // repository.AddMemberShip(cust);
+        //    return "New Membership Added";
 
-            return "";
-        }
+        //}
 
-        private String UpgradeMemberShip(Customer customer)
-        {
-            var value = true; // repository.UpgradeMembership(cust);
-            return "Membership Upgraded";
-
-            return "";
-        }
+        //private String UpgradeMemberShip(Customer customer)
+        //{
+        //    var value = true; // repository.UpgradeMembership(cust);
+        //    return "Membership Upgraded";
+             
+        //}
     }
 }
