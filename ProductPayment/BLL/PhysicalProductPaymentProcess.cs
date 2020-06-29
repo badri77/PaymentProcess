@@ -37,6 +37,7 @@ namespace ProductPayment.BLL
                     payment.PaymentDate = DateTime.UtcNow;
 
                     // insert payment details to the database;
+                    ProcessCommission(payment, (int)order.ProductObj.Type); // process AGENT commision.
 
                     string packageSlip = _generatePackageSlip.GeneratePackingSlip(order);
                     Console.WriteLine("The package slip : {0} ", packageSlip);
@@ -50,7 +51,21 @@ namespace ProductPayment.BLL
                 //process ex; log the error.
                 return "failed";
             }
-}
-                     
+        }
+
+        private void ProcessCommission(Payment payment, int productType)
+        {
+            double commissionPercentage =10;
+            double CommisionAmount;
+            // get percentage value for each product type
+            // commissionPercentage = repository.GetPercentage4ProductType(productType);
+            CommisionAmount = (payment.PaymentAmount * commissionPercentage) / 100;
+
+            // save the value for the commission agent payment  repository
+            // agent = new CommissionAgent(id);
+            // agent.addCommision(CommissionAmount);
+
+        }
+
     }
 }
