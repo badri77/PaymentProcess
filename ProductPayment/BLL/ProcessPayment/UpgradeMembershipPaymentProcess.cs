@@ -44,7 +44,7 @@ namespace ProductPayment.BLL.ProcessPayment
                     {
                         //process payment amount.
                         var output = amount;
-                        retValue = "success";// repository.UpgradeMembershi;(cust);
+                        retValue = "success";// repository.UpgradeMembership;(cust);
                     }
 
                     
@@ -52,7 +52,7 @@ namespace ProductPayment.BLL.ProcessPayment
                     {
                         // processEmail
                         string emailid = cust.EmailId;
-                        string emailBody = "New Membership created and activated"; // bring from config or db or resource file for standard text.
+                        string emailBody = "Membership Upgraded successfully"; // bring from config or db or resource file for standard text.
                                                                                    // create email object and send an membership creation and activation email.
                     }
                     return retValue;
