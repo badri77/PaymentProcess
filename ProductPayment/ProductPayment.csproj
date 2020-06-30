@@ -43,15 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\BookPaymentProcess.cs" />
+    <Compile Include="BLL\ProcessPayment\BookPaymentProcess.cs" />
     <Compile Include="BLL\DoProcessPaymentFactory.cs" />
-    <Compile Include="BLL\GeneratePackageSlip.cs" />
-    <Compile Include="BLL\IProcessPayment.cs" />
-    <Compile Include="BLL\MemberPaymentProcess.cs" />
-    <Compile Include="BLL\MembershipProcess.cs" />
-    <Compile Include="BLL\PhysicalProductPaymentProcess.cs" />
-    <Compile Include="BLL\UpgradeMembershipPaymentProcess.cs" />
-    <Compile Include="BLL\VideoPaymentProcess.cs" />
+    <Compile Include="BLL\GeneratePackageSlipProcessCommission.cs" />
+    <Compile Include="BLL\ProcessPayment\IProcessPayment.cs" />
+    <Compile Include="BLL\ProcessPayment\MemberPaymentProcess.cs" />
+    <Compile Include="BLL\ProcessPayment\PhysicalProductPaymentProcess.cs" />
+    <Compile Include="BLL\ProcessPayment\UpgradeMembershipPaymentProcess.cs" />
+    <Compile Include="BLL\ProcessPayment\VideoPaymentProcess.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Payment.cs" />

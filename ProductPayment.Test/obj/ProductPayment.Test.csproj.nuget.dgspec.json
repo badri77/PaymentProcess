@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\New folder\\PaymentProcess\\ProductPayment.Test\\ProductPayment.Test.csproj": {}
+  },
+  "projects": {
+    "E:\\New folder\\PaymentProcess\\ProductPayment.Test\\ProductPayment.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\New folder\\PaymentProcess\\ProductPayment.Test\\ProductPayment.Test.csproj",
+        "projectName": "ProductPayment.Test",
+        "projectPath": "E:\\New folder\\PaymentProcess\\ProductPayment.Test\\ProductPayment.Test.csproj",
+        "packagesPath": "C:\\Users\\Badarinarayana\\.nuget\\packages\\",
+        "outputPath": "E:\\New folder\\PaymentProcess\\ProductPayment.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Badarinarayana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "E:\\New folder\\PaymentProcess\\ProductPayment\\ProductPayment.csproj": {
+                "projectPath": "E:\\New folder\\PaymentProcess\\ProductPayment\\ProductPayment.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.15.1, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\New folder\\PaymentProcess\\ProductPayment\\ProductPayment.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\New folder\\PaymentProcess\\ProductPayment\\ProductPayment.csproj",
+        "projectName": "ProductPayment",
+        "projectPath": "E:\\New folder\\PaymentProcess\\ProductPayment\\ProductPayment.csproj"
+      },
+      "frameworks": {
+        "net471": {}
+      }
+    }
+  }
+}

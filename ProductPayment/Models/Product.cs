@@ -17,7 +17,7 @@
         Physical = 0,
         Book = 1,
         Membership =2,
-        Upgrade =3,
-        Video = 4
+        UpgradeMembership =3,
+        VideoTraining = 4
     }
 }

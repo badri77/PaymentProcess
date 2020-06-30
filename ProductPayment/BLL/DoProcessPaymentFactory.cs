@@ -1,4 +1,6 @@
 ﻿using ProductPayment.Models;
+using ProductPayment.BLL;
+using ProductPayment.BLL.ProcessPayment;
 
 namespace ProductPayment.BLL
 {
@@ -28,7 +30,7 @@ namespace ProductPayment.BLL
                     return _processPayment;
                    
                 case 4:
-                    _processPayment = new VideoPaymentProcess();
+                    _processPayment = new VideoTrainingPaymentProcess();
                     return _processPayment;
                     
                 default:
